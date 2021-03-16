@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.catapp.cat.data.CatProperty" />
+            type="com.example.catapp.cat.item.data.CatProperty" />
     </data>
     <ImageView
         android:id="@+id/cat_image"

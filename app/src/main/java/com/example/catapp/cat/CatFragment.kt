@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.catapp.cat.item.PhotoGridAdaptor
 import com.example.catapp.databinding.FragmentCatBinding
 
 class CatFragment : Fragment() {
@@ -24,7 +25,8 @@ class CatFragment : Fragment() {
         val binding = FragmentCatBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.photosGrid.adapter = PhotoGridAdaptor()
+        binding.photosGrid.adapter =
+            PhotoGridAdaptor()
         return binding.root
 
     }

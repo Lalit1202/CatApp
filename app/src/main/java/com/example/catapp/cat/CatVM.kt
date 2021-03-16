@@ -2,12 +2,9 @@ package com.example.catapp.cat
 
 import android.util.Log
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableList
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.catapp.cat.data.CatProperty
+import com.example.catapp.cat.item.data.CatProperty
 import com.example.catapp.cat.data.CatRepository
 import com.example.freetogame.base.ApiResult
 import kotlinx.coroutines.launch

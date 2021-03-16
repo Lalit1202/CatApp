@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.catapp.databinding.FragmentCatBinding
 
 class CatFragment : Fragment() {
 
-
-    private val viewModel : CatVM = ViewModelProvider(this).get(CatVM::class.java)
+    private val viewModel by viewModels<CatVM>()
 
     companion object {
         @JvmStatic
@@ -22,7 +21,7 @@ class CatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding  = FragmentCatBinding.inflate(inflater)
+        val binding = FragmentCatBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.photosGrid.adapter = PhotoGridAdaptor()

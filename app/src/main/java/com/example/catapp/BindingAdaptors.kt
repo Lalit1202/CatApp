@@ -6,18 +6,18 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.catapp.cat.PhotoGridAdaptor
-import com.example.catapp.network.CatProperty
+import com.example.catapp.cat.data.CatProperty
 
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<CatProperty>?)
+fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatProperty>?)
 {
     val adapter = recyclerView.adapter as PhotoGridAdaptor
-    adapter.submitList(data)
+    adapter.submitList(data!!.toList())
 
 }
 
-@BindingAdapter("ImageUrl")
+@BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?)
 {
     imgUrl?.let {

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catapp.databinding.GridViewItemBinding
-import com.example.catapp.network.CatProperty
+import com.example.catapp.cat.data.CatProperty
 
 class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyViewHolder>(DiffCallback){
 
@@ -15,7 +15,7 @@ class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyVi
 
         fun bind(catProperty: CatProperty)
         {
-            binding.property = catProperty
+            binding.data = catProperty
 
             binding.executePendingBindings()
         }

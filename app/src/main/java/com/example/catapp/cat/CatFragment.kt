@@ -11,10 +11,12 @@ import com.example.catapp.databinding.FragmentCatBinding
 class CatFragment : Fragment() {
 
 
-    private val viewModel : CatVM by lazy {
-        ViewModelProvider(this).get(CatVM::class.java)
-    }
+    private val viewModel : CatVM = ViewModelProvider(this).get(CatVM::class.java)
 
+    companion object {
+        @JvmStatic
+        fun newInstance() = CatFragment()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,12 +24,8 @@ class CatFragment : Fragment() {
     ): View? {
         val binding  = FragmentCatBinding.inflate(inflater)
         binding.lifecycleOwner = this
-
         binding.viewModel = viewModel
-
         binding.photosGrid.adapter = PhotoGridAdaptor()
-
-
         return binding.root
 
     }

@@ -2,6 +2,7 @@ package com.example.catapp.cat
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,14 @@ import com.example.catapp.cat.data.CatProperty
 class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyViewHolder>(DiffCallback){
 
 
+
+
+
+
+
     class CatPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
+
+
 
         fun bind(catProperty: CatProperty)
         {
@@ -19,6 +27,10 @@ class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyVi
 
             binding.executePendingBindings()
         }
+
+
+
+
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<CatProperty>()
@@ -42,7 +54,10 @@ class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyVi
 
     override fun onBindViewHolder(holder: PhotoGridAdaptor.CatPropertyViewHolder, position: Int) {
         val catProperty = getItem(position)
-        holder.bind(catProperty)
+        holder.bind(catProperty!!)
     }
+
+
+
 
 }

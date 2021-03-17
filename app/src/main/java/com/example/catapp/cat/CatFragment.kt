@@ -48,6 +48,12 @@ class CatFragment : Fragment() {
 
         })
 
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.data.clear()
+            viewModel.getCatProperties()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
 
         return binding.root
 

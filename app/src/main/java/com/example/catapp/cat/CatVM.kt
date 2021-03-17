@@ -25,7 +25,7 @@ class CatVM : ViewModel() {
         getCatProperties()
     }
 
-    private fun getCatProperties() {
+     fun getCatProperties() {
         viewModelScope.launch {
             try {
                 var apiResult = repository.fetchCat(pageNo)

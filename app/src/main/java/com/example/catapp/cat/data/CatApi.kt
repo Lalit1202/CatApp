@@ -1,5 +1,6 @@
 package com.example.catapp.cat.data
 
+import com.example.catapp.cat.item.data.CatProperty
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,4 +1,4 @@
-package com.example.catapp.cat.data
+package com.example.catapp.cat.item.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

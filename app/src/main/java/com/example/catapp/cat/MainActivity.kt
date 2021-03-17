@@ -1,9 +1,9 @@
-package com.example.catapp
+package com.example.catapp.cat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentTransaction
-import com.example.catapp.cat.CatFragment
+import com.example.catapp.R
 
 class MainActivity : AppCompatActivity() {
 

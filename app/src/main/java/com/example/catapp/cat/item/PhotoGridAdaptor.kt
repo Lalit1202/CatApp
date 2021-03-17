@@ -1,4 +1,4 @@
-package com.example.catapp.cat
+package com.example.catapp.cat.item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,12 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.catapp.cat.item.data.CatProperty
 import com.example.catapp.databinding.GridViewItemBinding
-import com.example.catapp.cat.data.CatProperty
 
-class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyViewHolder>(DiffCallback){
+class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyViewHolder>(
+    DiffCallback
+){
 
 
 
@@ -48,11 +50,13 @@ class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyVi
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PhotoGridAdaptor.CatPropertyViewHolder {
-        return CatPropertyViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+    ): CatPropertyViewHolder {
+        return CatPropertyViewHolder(
+            GridViewItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
-    override fun onBindViewHolder(holder: PhotoGridAdaptor.CatPropertyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CatPropertyViewHolder, position: Int) {
         val catProperty = getItem(position)
         holder.bind(catProperty!!)
     }

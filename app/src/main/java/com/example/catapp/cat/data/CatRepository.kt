@@ -1,5 +1,6 @@
 package com.example.catapp.cat.data
 
+import com.example.catapp.cat.item.data.CatProperty
 import com.example.freetogame.base.ApiClient
 import com.example.freetogame.base.ApiResult
 import kotlinx.coroutines.CoroutineExceptionHandler

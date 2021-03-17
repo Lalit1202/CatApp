@@ -20,7 +20,6 @@ class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyVi
             binding.data = catProperty
             binding.executePendingBindings()
         }
-
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<CatProperty>() {

@@ -42,15 +42,10 @@ class CatFragment : Fragment() {
 
             override fun loadMoreItems() {
                 isLoading = false
-                viewModel.getCatProperties()
+                viewModel.fetchCatData()
             }
 
         })
-
-        binding.swipeRefresh.setOnRefreshListener {
-            viewModel.refresh()
-            binding.swipeRefresh.isRefreshing = false
-        }
 
         return binding.root
 

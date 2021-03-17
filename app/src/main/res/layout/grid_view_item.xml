@@ -7,13 +7,24 @@
             name="data"
             type="com.example.catapp.cat.item.data.CatProperty" />
     </data>
-    <ImageView
-        android:id="@+id/cat_image"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
-        android:padding="2dp"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/catImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:imageUrl= "@{data.url}"
-        tools:src="@tools:sample/backgrounds/scenic"/>
+        android:adjustViewBounds="true"
+        tools:src="@tools:sample/backgrounds/scenic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

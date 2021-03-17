@@ -1,10 +1,9 @@
 package com.example.catapp.cat
 
 import android.util.Log
+import androidx.databinding.Observable
 import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableList
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
@@ -17,21 +16,25 @@ class CatVM : ViewModel() {
 
     val data = ObservableArrayList<CatProperty>()
 
+    var isRefreshing = ObservableBoolean(false)
+
     var pageNo = 1
 
     val repository = CatRepository()
 
     init {
-        getCatProperties()
+        fetchCatData()
     }
 
-    fun refresh(){
+    fun onRefresh(){
+        isRefreshing.set(false)
         pageNo = 1;
         data.clear()
-        getCatProperties()
+        fetchCatData()
+        isRefreshing.set(true)
     }
 
-     fun getCatProperties() {
+     fun fetchCatData() {
         viewModelScope.launch {
             try {
                 var apiResult = repository.fetchCat(pageNo)

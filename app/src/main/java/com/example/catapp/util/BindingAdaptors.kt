@@ -18,11 +18,17 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatProperty>?) 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
-        //val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
-            .load(imgUrl)
+            .load(imgUri)
+            .override(140)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imgView)
+            .clearOnDetach()
     }
 }
 
+@BindingAdapter("app:refreshing")
+fun bindSwipeRefreshing(swipeRefresh : androidx.swiperefreshlayout.widget.SwipeRefreshLayout, refreshing : Boolean){
+    swipeRefresh.isRefreshing = false
+}

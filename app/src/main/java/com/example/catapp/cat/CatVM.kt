@@ -25,6 +25,12 @@ class CatVM : ViewModel() {
         getCatProperties()
     }
 
+    fun refresh(){
+        pageNo = 1;
+        data.clear()
+        getCatProperties()
+    }
+
      fun getCatProperties() {
         viewModelScope.launch {
             try {
@@ -35,10 +41,10 @@ class CatVM : ViewModel() {
                         Log.e("success","success")
                         data.addAll(apiResult.value)
                     }
-                    is ApiResult.Failure -> Log.e("error","error")
+                    is ApiResult.Failure -> Log.e("error f","error")
                 }
             } catch (e: Exception) {
-                Log.e("error","error")
+                Log.e("error",e.localizedMessage?:"eee")
             }
         }
     }

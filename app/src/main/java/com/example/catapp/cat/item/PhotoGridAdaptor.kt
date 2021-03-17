@@ -11,40 +11,26 @@ import com.example.catapp.databinding.GridViewItemBinding
 
 class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyViewHolder>(
     DiffCallback
-){
+) {
 
+    class CatPropertyViewHolder(private var binding: GridViewItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-
-
-
-
-
-    class CatPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
-
-
-
-        fun bind(catProperty: CatProperty)
-        {
+        fun bind(catProperty: CatProperty) {
             binding.data = catProperty
-
             binding.executePendingBindings()
         }
 
-
-
-
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<CatProperty>()
-    {
+    companion object DiffCallback : DiffUtil.ItemCallback<CatProperty>() {
         override fun areItemsTheSame(oldItem: CatProperty, newItem: CatProperty): Boolean {
-            return oldItem===newItem
+            return oldItem === newItem
         }
 
         override fun areContentsTheSame(oldItem: CatProperty, newItem: CatProperty): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
 
     override fun onCreateViewHolder(
@@ -60,8 +46,5 @@ class PhotoGridAdaptor : ListAdapter<CatProperty, PhotoGridAdaptor.CatPropertyVi
         val catProperty = getItem(position)
         holder.bind(catProperty!!)
     }
-
-
-
 
 }

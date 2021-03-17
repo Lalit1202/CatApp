@@ -18,13 +18,11 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatProperty>?) 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
-        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        //val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
-            .load(imgUri)
+            .load(imgUrl)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imgView)
-            .clearOnDetach()
-
     }
 }
 

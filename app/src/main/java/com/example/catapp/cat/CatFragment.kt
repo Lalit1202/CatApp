@@ -31,7 +31,7 @@ class CatFragment : Fragment() {
         binding.photosGrid.adapter = PhotoGridAdaptor()
         val layoutManger = binding.photosGrid.layoutManager as GridLayoutManager
 
-        binding.photosGrid.addOnScrollListener(object : PaginationScrollListener(layoutManger){
+        binding.photosGrid.addOnScrollListener(object : PaginationScrollListener(layoutManger) {
             override fun isLastPage(): Boolean {
                 return isLastPage
             }
@@ -41,19 +41,16 @@ class CatFragment : Fragment() {
             }
 
             override fun loadMoreItems() {
-               isLoading = false
-
+                isLoading = false
                 viewModel.getCatProperties()
             }
 
         })
 
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.data.clear()
-            viewModel.getCatProperties()
+            viewModel.refresh()
             binding.swipeRefresh.isRefreshing = false
         }
-
 
         return binding.root
 

@@ -21,10 +21,9 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
             .load(imgUri)
-            .override(140)
+            .thumbnail(0.1f)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imgView)
-            .clearOnDetach()
     }
 }
 

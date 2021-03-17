@@ -15,11 +15,11 @@ abstract class PaginationScrollListener(var layoutManager: GridLayoutManager) : 
         if (!isLoading() && !isLastPage()) {
             if (visibleItemCount + firstVisibleItemPosition >= totalItemCount && firstVisibleItemPosition >= 0) {
                 loadMoreItems()
-            }//                    && totalItemCount >= ClothesFragment.itemsCount
+            }
         }
     }
-    abstract fun isLastPage(): Boolean
 
+    abstract fun isLastPage(): Boolean
     abstract fun isLoading(): Boolean
     abstract fun loadMoreItems()
     }

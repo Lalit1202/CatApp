@@ -1,12 +1,10 @@
 package com.example.catapp.cat
 
 import android.util.Log
-import androidx.databinding.Observable
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import com.example.catapp.cat.data.CatRepository
 import com.example.catapp.cat.item.data.CatProperty
 import com.example.freetogame.base.ApiResult
@@ -26,29 +24,44 @@ class CatVM : ViewModel() {
         fetchCatData()
     }
 
-    fun onRefresh(){
+    fun onRefresh() {
         isRefreshing.set(false)
         pageNo = 1;
-        data.clear()
-        fetchCatData()
-        isRefreshing.set(true)
+        fetchCatData(true)
     }
 
-     fun fetchCatData() {
+    fun fetchCatData(refresh: Boolean = false) {
         viewModelScope.launch {
             try {
                 var apiResult = repository.fetchCat(pageNo)
                 when (apiResult) {
                     is ApiResult.Success -> {
-                        pageNo++
-                        Log.e("success","success")
-                        data.addAll(apiResult.value)
+                        updatePageNumberByOne()
+                        if (refresh) resetDataSet()
+                        updateCatData(apiResult.value)
                     }
-                    is ApiResult.Failure -> Log.e("error f","error")
+                    is ApiResult.Failure -> Log.e("error f", "error")
                 }
             } catch (e: Exception) {
-                Log.e("error",e.localizedMessage?:"eee")
+                Log.e("error", e.localizedMessage ?: "eee")
             }
+            onRefreshDone()
         }
+    }
+
+    private fun updateCatData(listCat: List<CatProperty>) {
+        data.addAll(listCat)
+    }
+
+    private fun updatePageNumberByOne() {
+        pageNo++
+    }
+
+    private fun resetDataSet() {
+        data.clear()
+    }
+
+    private fun onRefreshDone() {
+        isRefreshing.set(true)
     }
 }

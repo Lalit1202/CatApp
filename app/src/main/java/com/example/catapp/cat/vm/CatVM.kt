@@ -32,21 +32,21 @@ class CatVM : ViewModel() {
 
     fun fetchCatData(refresh: Boolean = false) {
         viewModelScope.launch {
-            try {
-                var apiResult = repository.fetchCat(pageNo)
-                when (apiResult) {
-                    is ApiResult.Success -> {
-                        updatePageNumberByOne()
-                        if (refresh) resetDataSet()
-                        addToCatData(apiResult.value)
-                    }
-                    is ApiResult.Failure -> Log.e("error f", "error")
-                }
-            } catch (e: Exception) {
-                Log.e("error", e.localizedMessage ?: "eee")
+
+            var apiResult = repository.fetchCat(pageNo)
+            when (apiResult) {
+                is ApiResult.Success -> onCatApiSuccess(apiResult.value)
+                is ApiResult.Failure -> Log.w("error f", "error") // can show error page
             }
+
             onRefreshDone()
         }
+    }
+
+    private fun onCatApiSuccess(listCat: List<CatData>) {
+        updatePageNumberByOne()
+        if (refresh) resetDataSet()
+        addToCatData(listCat)
     }
 
     private fun addToCatData(listCat: List<CatData>) {

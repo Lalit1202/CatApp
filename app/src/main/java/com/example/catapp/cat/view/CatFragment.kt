@@ -16,6 +16,7 @@ class CatFragment : Fragment() {
 
     var isLastPage: Boolean = false
     var isLoading: Boolean = false
+
     private val viewModel by viewModels<CatVM>()
 
     companion object {

@@ -1,4 +1,4 @@
-package com.example.catapp.cat
+package com.example.catapp.cat.vm
 
 import android.util.Log
 import androidx.databinding.ObservableArrayList
@@ -6,13 +6,13 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.catapp.cat.data.CatRepository
-import com.example.catapp.cat.item.data.CatProperty
+import com.example.catapp.cat.data.model.CatData
 import com.example.freetogame.base.ApiResult
 import kotlinx.coroutines.launch
 
 class CatVM : ViewModel() {
 
-    val data = ObservableArrayList<CatProperty>()
+    val data = ObservableArrayList<CatData>()
 
     var isRefreshing = ObservableBoolean(false)
 
@@ -26,7 +26,7 @@ class CatVM : ViewModel() {
 
     fun onRefresh() {
         isRefreshing.set(false)
-        pageNo = 1;
+        resetPageNumber()
         fetchCatData(true)
     }
 
@@ -38,7 +38,7 @@ class CatVM : ViewModel() {
                     is ApiResult.Success -> {
                         updatePageNumberByOne()
                         if (refresh) resetDataSet()
-                        updateCatData(apiResult.value)
+                        addToCatData(apiResult.value)
                     }
                     is ApiResult.Failure -> Log.e("error f", "error")
                 }
@@ -49,12 +49,16 @@ class CatVM : ViewModel() {
         }
     }
 
-    private fun updateCatData(listCat: List<CatProperty>) {
+    private fun addToCatData(listCat: List<CatData>) {
         data.addAll(listCat)
     }
 
     private fun updatePageNumberByOne() {
         pageNo++
+    }
+
+    private fun resetPageNumber() {
+        pageNo = 1;
     }
 
     private fun resetDataSet() {

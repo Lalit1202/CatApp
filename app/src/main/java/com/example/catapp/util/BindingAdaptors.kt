@@ -6,12 +6,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.catapp.cat.item.PhotoGridAdaptor
-import com.example.catapp.cat.item.data.CatProperty
+import com.example.catapp.cat.item.CatListGridAdaptor
+import com.example.catapp.cat.data.model.CatData
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatProperty>?) {
-    val adapter = recyclerView.adapter as PhotoGridAdaptor
+fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatData>?) {
+    val adapter = recyclerView.adapter as CatListGridAdaptor
     adapter.submitList(data!!.toList())
 }
 

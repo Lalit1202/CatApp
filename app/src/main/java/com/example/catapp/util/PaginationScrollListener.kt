@@ -1,4 +1,4 @@
-package com.example.catapp.cat
+package com.example.catapp.util
 
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView

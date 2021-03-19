@@ -1,6 +1,6 @@
 package com.example.catapp.cat.data
 
-import com.example.catapp.cat.item.data.CatProperty
+import com.example.catapp.cat.data.model.CatData
 import com.example.freetogame.base.ApiClient
 import com.example.freetogame.base.ApiResult
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -9,13 +9,13 @@ import kotlinx.coroutines.withContext
 
 class CatRepository {
 
-    private val api = ApiClient.getClient().create(CatApi::class.java)
+    private val api = ApiClient.getClient().create(CatApiService::class.java)
 
     suspend fun fetchCat(
         pageNo : Int
-    ): ApiResult<List<CatProperty>, String> {
+    ): ApiResult<List<CatData>, String> {
 
-        lateinit var result: ApiResult<List<CatProperty>, Nothing>
+        lateinit var result: ApiResult<List<CatData>, Nothing>
 
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
             result = ApiResult.Failure(throwable.localizedMessage ?: "IO Error")

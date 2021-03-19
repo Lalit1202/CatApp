@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.catapp.cat.CatVM" />
+            type="com.example.catapp.cat.vm.CatVM" />
     </data>
 
     <FrameLayout

@@ -12,7 +12,7 @@ class CatRepository {
     private val api = ApiClient.getClient().create(CatApiService::class.java)
 
     suspend fun fetchCat(
-        pageNo : Int
+        pageNo: Int
     ): ApiResult<List<CatData>, String> {
 
         lateinit var result: ApiResult<List<CatData>, Nothing>

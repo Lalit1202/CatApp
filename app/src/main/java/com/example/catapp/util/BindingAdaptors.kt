@@ -6,8 +6,8 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.catapp.cat.item.CatListGridAdaptor
 import com.example.catapp.cat.data.model.CatData
+import com.example.catapp.cat.item.CatListGridAdaptor
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatData>?) {
@@ -28,6 +28,9 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("app:refreshing")
-fun bindSwipeRefreshing(swipeRefresh : androidx.swiperefreshlayout.widget.SwipeRefreshLayout, refreshing : Boolean){
+fun bindSwipeRefreshing(
+    swipeRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout,
+    refreshing: Boolean
+) {
     swipeRefresh.isRefreshing = false
 }

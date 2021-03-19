@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 
- fun hasNetwork(context: Context): Boolean {
+fun hasNetwork(context: Context): Boolean {
     var isConnected: Boolean = false // Initial Value
     val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

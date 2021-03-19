@@ -35,7 +35,7 @@ class CatVM : ViewModel() {
 
             var apiResult = repository.fetchCat(pageNo)
             when (apiResult) {
-                is ApiResult.Success -> onCatApiSuccess(apiResult.value)
+                is ApiResult.Success -> onCatApiSuccess(refresh, apiResult.value)
                 is ApiResult.Failure -> Log.w("error f", "error") // can show error page
             }
 
@@ -43,7 +43,7 @@ class CatVM : ViewModel() {
         }
     }
 
-    private fun onCatApiSuccess(listCat: List<CatData>) {
+    private fun onCatApiSuccess(refresh: Boolean, listCat: List<CatData>) {
         updatePageNumberByOne()
         if (refresh) resetDataSet()
         addToCatData(listCat)

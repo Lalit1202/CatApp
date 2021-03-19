@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.catapp.cat.vm.CatVM
 import com.example.catapp.cat.item.CatListGridAdaptor
+import com.example.catapp.cat.vm.CatVM
 import com.example.catapp.databinding.FragmentCatBinding
 import com.example.catapp.util.PaginationScrollListener
 

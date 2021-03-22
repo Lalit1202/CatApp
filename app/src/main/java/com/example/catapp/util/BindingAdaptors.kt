@@ -1,5 +1,6 @@
 package com.example.catapp.util
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -10,9 +11,9 @@ import com.example.catapp.cat.data.model.CatData
 import com.example.catapp.cat.item.CatListGridAdaptor
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatData>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<CatData>) {
     val adapter = recyclerView.adapter as CatListGridAdaptor
-    adapter.submitList(data!!.toList())
+    adapter.submitList(data.toList())
 }
 
 @BindingAdapter("imageUrl")
@@ -34,4 +35,13 @@ fun bindSwipeRefreshing(
     refreshing: Boolean
 ) {
     swipeRefresh.isRefreshing = false
+}
+
+@BindingAdapter("app:isVisible")
+fun setIsVisible(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
 }

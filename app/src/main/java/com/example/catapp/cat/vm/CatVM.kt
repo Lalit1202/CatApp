@@ -1,7 +1,6 @@
 package com.example.catapp.cat.vm
 
 import android.util.Log
-import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,6 @@ import com.example.catapp.cat.data.model.CatData
 import com.example.catapp.cat.view.CatFragment
 import com.example.catapp.util.hasNetwork
 import com.example.freetogame.base.ApiResult
-import kotlinx.android.synthetic.main.fragment_cat.*
 import kotlinx.coroutines.launch
 
 class CatVM : ViewModel() {
@@ -19,9 +17,8 @@ class CatVM : ViewModel() {
     val data = ObservableArrayList<CatData>()
 
     var isRefreshing = ObservableBoolean(false)
-    var isLoadingMore =ObservableBoolean(false)
+    var isLoadingMore = ObservableBoolean(false)
     val catFragment = CatFragment()
-
 
     var pageNo = 1
 
@@ -38,47 +35,47 @@ class CatVM : ViewModel() {
     }
 
     fun fetchCatData(refresh: Boolean = false) {
+        if (!refresh) setLoadingMore(true)
+
         viewModelScope.launch {
-
-
             var apiResult = repository.fetchCat(pageNo)
             when (apiResult) {
                 is ApiResult.Success -> onCatApiSuccess(refresh, apiResult.value)
-                is ApiResult.Failure -> Log.w("error f", "error") // can show error page
+                is ApiResult.Failure -> Log.d("error f", "error") // can show error page
             }
 
+            setLoadingMore(false)
             onRefreshDone()
         }
     }
 
-     private fun onCatApiSuccess(refresh: Boolean, listCat: List<CatData>) {
+    private fun onCatApiSuccess(refresh: Boolean, listCat: List<CatData>) {
         updatePageNumberByOne()
         if (refresh) resetDataSet()
         addToCatData(listCat)
     }
 
-     fun addToCatData(listCat: List<CatData>) {
+    fun addToCatData(listCat: List<CatData>) {
         data.addAll(listCat)
     }
 
-     fun updatePageNumberByOne() {
+    fun updatePageNumberByOne() {
         pageNo++
     }
 
-     fun resetPageNumber() {
+    fun resetPageNumber() {
         pageNo = 1
     }
 
-     fun resetDataSet() {
+    fun resetDataSet() {
         data.clear()
     }
 
     private fun onRefreshDone() {
         isRefreshing.set(true)
     }
-    fun onLoad()
-    {
-        isLoadingMore.set(true)
 
+    fun setLoadingMore(isLoading: Boolean) {
+        isLoadingMore.set(isLoading)
     }
 }

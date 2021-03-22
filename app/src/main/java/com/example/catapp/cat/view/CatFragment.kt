@@ -49,7 +49,7 @@ class CatFragment : Fragment() {
 
 
         }
-        else {
+
 
 
             binding.photosGrid.addOnScrollListener(object : PaginationScrollListener(layoutManger) {
@@ -69,11 +69,6 @@ class CatFragment : Fragment() {
                 }
 
             })
-        }
-
-
-
-
 
         return binding.root
 

@@ -34,9 +34,9 @@ object ApiClient {
     private fun getOkhttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .readTimeout(60, TimeUnit.SECONDS)
-            .writeTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .build()
     }
 
@@ -45,7 +45,7 @@ object ApiClient {
         .addInterceptor { chain ->
             var request = chain.request()
             request = if (hasNetwork(context))
-                request.newBuilder().header("Cache-Control", "public, max-age=" + 5).build()
+                request.newBuilder().header("Cache-Control", "public, max-age=" + 30).build()
             else
                 request.newBuilder().header(
                     "Cache-Control",

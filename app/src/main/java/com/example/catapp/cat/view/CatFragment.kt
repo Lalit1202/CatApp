@@ -37,26 +37,39 @@ class CatFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.photosGrid.adapter = CatListGridAdaptor()
+
         val layoutManger = binding.photosGrid.layoutManager as GridLayoutManager
-        var progressBar = binding.pgbar
+        //var progressBar = binding.pgbar
+       var textView =  binding.tv
+        if(!hasNetwork(this.requireContext()))
+        {
+          textView.visibility = View.VISIBLE
+          binding.photosGrid.visibility = View.GONE
+            binding.swipeRefresh.visibility = View.GONE
 
-        binding.photosGrid.addOnScrollListener(object : PaginationScrollListener(layoutManger) {
-            override fun isLastPage(): Boolean {
-                return isLastPage
-            }
 
-            override fun isLoading(): Boolean {
-                return isLoading
-            }
+        }
+        else {
 
-            override fun loadMoreItems() {
 
-                isLoading = false
-                viewModel.fetchCatData()
+            binding.photosGrid.addOnScrollListener(object : PaginationScrollListener(layoutManger) {
+                override fun isLastPage(): Boolean {
+                    return isLastPage
+                }
 
-            }
+                override fun isLoading(): Boolean {
+                    return isLoading
+                }
 
-        })
+                override fun loadMoreItems() {
+
+                    isLoading = false
+                    viewModel.fetchCatData()
+
+                }
+
+            })
+        }
 
 
 

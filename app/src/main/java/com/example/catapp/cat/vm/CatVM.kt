@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.catapp.cat.data.CatRepository
 import com.example.catapp.cat.data.model.CatData
 import com.example.catapp.cat.view.CatFragment
+import com.example.catapp.util.hasNetwork
 import com.example.freetogame.base.ApiResult
 import kotlinx.android.synthetic.main.fragment_cat.*
 import kotlinx.coroutines.launch
@@ -27,7 +28,7 @@ class CatVM : ViewModel() {
     val repository = CatRepository()
 
     init {
-        fetchCatData()
+           fetchCatData()
     }
 
     fun onRefresh() {

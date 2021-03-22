@@ -95,10 +95,12 @@ class GameVMTest
     @Test
     fun incrementCheck()
     {
-        var page =1
-        page++
-       assertEquals(3,page)
-        assertEquals(2,page)
+        val vm = CatVM()
+
+        vm.fetchCatData()
+       val value= vm.data.size
+        assertEquals(20,value)
+
 
 
 
@@ -112,6 +114,7 @@ class GameVMTest
 //
 //
 //    }
+
 }
 
 

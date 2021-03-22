@@ -18,6 +18,7 @@ class CatListGridAdaptor :
             binding.executePendingBindings()
         }
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.catapp.cat.data.CatRepository
 import com.example.catapp.cat.data.model.CatData
 import com.example.catapp.cat.view.CatFragment
-import com.example.catapp.util.hasNetwork
 import com.example.freetogame.base.ApiResult
 import kotlinx.coroutines.launch
 
@@ -25,7 +24,7 @@ class CatVM : ViewModel() {
     val repository = CatRepository()
 
     init {
-           fetchCatData()
+        fetchCatData()
     }
 
     fun onRefresh() {
@@ -35,7 +34,7 @@ class CatVM : ViewModel() {
     }
 
     fun fetchCatData(refresh: Boolean = false) {
-        if (!refresh) setLoadingMore(true)
+        if (!refresh && pageNo>1) setLoadingMore(true)
 
         viewModelScope.launch {
             var apiResult = repository.fetchCat(pageNo)

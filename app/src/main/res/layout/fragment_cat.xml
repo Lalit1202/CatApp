@@ -52,6 +52,14 @@
                         tools:itemCount="20"
                         tools:listitem="@layout/grid_view_item" />
 
+                    <ProgressBar
+                        android:id="@+id/pgbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:visibility="@{viewModel.}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

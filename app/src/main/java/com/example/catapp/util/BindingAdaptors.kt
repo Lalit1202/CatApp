@@ -22,6 +22,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
         Glide.with(imgView.context)
             .load(imgUri)
             .thumbnail(0.1f)
+
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(imgView)
     }

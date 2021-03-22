@@ -17,7 +17,10 @@ abstract class PaginationScrollListener(var layoutManager: GridLayoutManager) :
                 loadMoreItems()
             }
         }
+
+
     }
+
 
     abstract fun isLastPage(): Boolean
     abstract fun isLoading(): Boolean

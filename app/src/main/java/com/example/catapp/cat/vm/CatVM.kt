@@ -1,13 +1,16 @@
 package com.example.catapp.cat.vm
 
 import android.util.Log
+import android.view.View
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.catapp.cat.data.CatRepository
 import com.example.catapp.cat.data.model.CatData
+import com.example.catapp.cat.view.CatFragment
 import com.example.freetogame.base.ApiResult
+import kotlinx.android.synthetic.main.fragment_cat.*
 import kotlinx.coroutines.launch
 
 class CatVM : ViewModel() {
@@ -15,6 +18,9 @@ class CatVM : ViewModel() {
     val data = ObservableArrayList<CatData>()
 
     var isRefreshing = ObservableBoolean(false)
+    var isLoadingMore =ObservableBoolean(false)
+    val catFragment = CatFragment()
+
 
     var pageNo = 1
 
@@ -33,6 +39,7 @@ class CatVM : ViewModel() {
     fun fetchCatData(refresh: Boolean = false) {
         viewModelScope.launch {
 
+
             var apiResult = repository.fetchCat(pageNo)
             when (apiResult) {
                 is ApiResult.Success -> onCatApiSuccess(refresh, apiResult.value)
@@ -43,29 +50,34 @@ class CatVM : ViewModel() {
         }
     }
 
-    private fun onCatApiSuccess(refresh: Boolean, listCat: List<CatData>) {
+     private fun onCatApiSuccess(refresh: Boolean, listCat: List<CatData>) {
         updatePageNumberByOne()
         if (refresh) resetDataSet()
         addToCatData(listCat)
     }
 
-    private fun addToCatData(listCat: List<CatData>) {
+     fun addToCatData(listCat: List<CatData>) {
         data.addAll(listCat)
     }
 
-    private fun updatePageNumberByOne() {
+     fun updatePageNumberByOne() {
         pageNo++
     }
 
-    private fun resetPageNumber() {
-        pageNo = 1;
+     fun resetPageNumber() {
+        pageNo = 1
     }
 
-    private fun resetDataSet() {
+     fun resetDataSet() {
         data.clear()
     }
 
     private fun onRefreshDone() {
         isRefreshing.set(true)
+    }
+    fun onLoad()
+    {
+        isLoadingMore.set(true)
+
     }
 }

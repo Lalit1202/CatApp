@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.catapp.cat.vm.CatVM" />
+            type="com.example.catapp.cat.vm.CatVM"/>
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -50,6 +50,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:background="@color/black"
+                android:src="@drawable/ic_launcher_foreground"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/pgbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

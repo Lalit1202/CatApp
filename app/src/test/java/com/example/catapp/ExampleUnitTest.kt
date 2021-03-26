@@ -2,9 +2,11 @@ package com.example.catapp
 
 import android.renderscript.ScriptGroup
 import android.util.Log
+import android.util.Log.ASSERT
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.databinding.BindingMethod
 import androidx.databinding.ObservableArrayList
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.bumptech.glide.load.engine.Resource
 import com.example.catapp.cat.data.CatRepository
 import com.example.catapp.cat.data.model.CatData
@@ -21,6 +23,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
+import org.junit.rules.TestName
 import org.junit.rules.TestRule
 import org.junit.runner.Description
 import org.junit.runner.RunWith
@@ -39,6 +42,8 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+        //assertEquals(5,2*3)
+
     }
 
 
@@ -78,6 +83,8 @@ class GameVMTest
     val testCoroutineRule = TestCoroutineRule()
 
 
+    @get : Rule
+    val testName  = TestName()
 
 
 
@@ -92,29 +99,20 @@ class GameVMTest
 
     }
 
+
+
+
+
+}
+@RunWith(AndroidJUnit4::class)
+class Test{
     @Test
-    fun incrementCheck()
+    fun abc()
     {
-        val vm = CatVM()
 
-        vm.fetchCatData()
-       val value= vm.data.size
-        assertEquals(20,value)
-
-
-
+        assertTrue(5==5)
 
     }
-
-//    @Test
-//    fun resetpageNoCheck()    {
-//        val vm = CatVM()
-//        vm.updatePageNumberByOne()
-//        assertEquals()
-//
-//
-//    }
-
 }
 
 
